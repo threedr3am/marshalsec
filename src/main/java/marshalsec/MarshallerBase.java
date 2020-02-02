@@ -90,6 +90,9 @@ public abstract class MarshallerBase <T> implements UtilFactory {
                     verbose = true;
                     argoff++;
                 }
+                else if (args[ argoff ].equals("--attack")) {
+                    argoff+=3;
+                }
                 else {
                     argoff++;
                 }
@@ -161,7 +164,9 @@ public abstract class MarshallerBase <T> implements UtilFactory {
             throws Exception, IOException {
         T marshal;
         try {
-            System.setSecurityManager(new SideEffectSecurityManager());
+            if (test) {
+                System.setSecurityManager(new SideEffectSecurityManager());
+            }
             Object o = createObject(type, expandArguments(gadgetArgs));
             if ( o instanceof byte[] || o instanceof String ) {
                 // already marshalled by delegate
@@ -275,7 +280,6 @@ public abstract class MarshallerBase <T> implements UtilFactory {
 
 
     /**
-     * @param marshal
      * @throws IOException
      */
     private void writeOutput ( T data, EscapeType escape ) throws IOException {

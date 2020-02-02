@@ -258,6 +258,12 @@
 			<artifactId>jetty-plus</artifactId>
 			<version>9.4.8.v20171121</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.apache.dubbo</groupId>
+			<artifactId>dubbo</artifactId>
+			<version>2.7.3</version>
+		</dependency>
 	</dependencies>
 
 	<build>
