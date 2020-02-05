@@ -28,7 +28,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Comparator;
-
 import marshalsec.gadgets.CommonsBeanutils;
 import marshalsec.gadgets.JDKUtil;
 import marshalsec.gadgets.URLDNS;
@@ -39,12 +38,12 @@ import marshalsec.gadgets.XBean;
  * @author mbechler
  *
  */
-public class Java extends MarshallerBase<byte[]> implements CommonsBeanutils, XBean, URLDNS {
+public class Shiro extends MarshallerBase<byte[]> implements URLDNS {
 
     /**
      * {@inheritDoc}
      *
-     * @see marshalsec.MarshallerBase#marshal(java.lang.Object)
+     * @see MarshallerBase#marshal(Object)
      */
     @Override
     public byte[] marshal ( Object o ) throws Exception {
@@ -59,7 +58,7 @@ public class Java extends MarshallerBase<byte[]> implements CommonsBeanutils, XB
     /**
      * {@inheritDoc}
      *
-     * @see marshalsec.MarshallerBase#unmarshal(java.lang.Object)
+     * @see MarshallerBase#unmarshal(Object)
      */
     @Override
     public Object unmarshal ( byte[] data ) throws Exception {
@@ -69,19 +68,7 @@ public class Java extends MarshallerBase<byte[]> implements CommonsBeanutils, XB
         }
     }
 
-
-    /**
-     * {@inheritDoc}
-     *
-     * @see marshalsec.UtilFactory#makeComparatorTrigger(java.lang.Object, java.util.Comparator)
-     */
-    @Override
-    public Object makeComparatorTrigger ( Object tgt, Comparator<?> cmp ) throws Exception {
-        return JDKUtil.makePriorityQueue(tgt, cmp);
-    }
-
-
     public static void main ( String[] args ) {
-        new Java().run(args);
+        new Shiro().run(args);
     }
 }

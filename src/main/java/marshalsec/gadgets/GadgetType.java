@@ -51,6 +51,7 @@ public enum GadgetType {
     ScriptEngine(ScriptEngine.class),
     Templates(Templates.class),
     ResourceGadget(ResourceGadget.class),
+    URLDNS(URLDNS.class),
 
     //
     ;
