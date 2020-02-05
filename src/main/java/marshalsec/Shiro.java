@@ -27,18 +27,15 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.Comparator;
-import marshalsec.gadgets.CommonsBeanutils;
-import marshalsec.gadgets.JDKUtil;
+import marshalsec.gadgets.CommonsCollections;
 import marshalsec.gadgets.URLDNS;
-import marshalsec.gadgets.XBean;
 
 
 /**
  * @author mbechler
  *
  */
-public class Shiro extends MarshallerBase<byte[]> implements URLDNS {
+public class Shiro extends MarshallerBase<byte[]> implements URLDNS, CommonsCollections {
 
     /**
      * {@inheritDoc}

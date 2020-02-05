@@ -52,6 +52,7 @@ public enum GadgetType {
     Templates(Templates.class),
     ResourceGadget(ResourceGadget.class),
     URLDNS(URLDNS.class),
+    CommonsCollections(CommonsCollections.class),
 
     //
     ;

