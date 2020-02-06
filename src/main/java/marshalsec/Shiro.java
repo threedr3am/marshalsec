@@ -27,7 +27,9 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import marshalsec.gadgets.CommonsBeanutils1;
 import marshalsec.gadgets.CommonsCollections;
+import marshalsec.gadgets.JRMPClient;
 import marshalsec.gadgets.URLDNS;
 
 
@@ -35,7 +37,8 @@ import marshalsec.gadgets.URLDNS;
  * @author mbechler
  *
  */
-public class Shiro extends MarshallerBase<byte[]> implements URLDNS, CommonsCollections {
+public class Shiro extends MarshallerBase<byte[]> implements URLDNS, CommonsCollections,
+    CommonsBeanutils1, JRMPClient {
 
     /**
      * {@inheritDoc}

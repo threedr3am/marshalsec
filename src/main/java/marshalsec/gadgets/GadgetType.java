@@ -53,6 +53,8 @@ public enum GadgetType {
     ResourceGadget(ResourceGadget.class),
     URLDNS(URLDNS.class),
     CommonsCollections(CommonsCollections.class),
+    CommonsBeanutils1(CommonsBeanutils1.class),
+    JRMPClient(JRMPClient.class),
 
     //
     ;
