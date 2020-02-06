@@ -30,7 +30,23 @@ import java.io.ObjectOutputStream;
 import java.util.Comparator;
 
 import marshalsec.gadgets.CommonsBeanutils;
+import marshalsec.gadgets.CommonsBeanutils1;
+import marshalsec.gadgets.CommonsCollections1;
+import marshalsec.gadgets.CommonsCollections10;
+import marshalsec.gadgets.CommonsCollections11;
+import marshalsec.gadgets.CommonsCollections2;
+import marshalsec.gadgets.CommonsCollections3;
+import marshalsec.gadgets.CommonsCollections3ForLoadJar;
+import marshalsec.gadgets.CommonsCollections4;
+import marshalsec.gadgets.CommonsCollections5;
+import marshalsec.gadgets.CommonsCollections5ForLoadJar;
+import marshalsec.gadgets.CommonsCollections6;
+import marshalsec.gadgets.CommonsCollections6ForLoadJar;
+import marshalsec.gadgets.CommonsCollections7;
+import marshalsec.gadgets.CommonsCollections8;
+import marshalsec.gadgets.CommonsCollections9;
 import marshalsec.gadgets.JDKUtil;
+import marshalsec.gadgets.JRMPClient;
 import marshalsec.gadgets.URLDNS;
 import marshalsec.gadgets.XBean;
 
@@ -39,7 +55,14 @@ import marshalsec.gadgets.XBean;
  * @author mbechler
  *
  */
-public class Java extends MarshallerBase<byte[]> implements CommonsBeanutils, XBean, URLDNS {
+public class Java extends MarshallerBase<byte[]> implements CommonsBeanutils, XBean, URLDNS,
+    CommonsBeanutils1, JRMPClient, CommonsCollections1, CommonsCollections2, CommonsCollections3,
+    CommonsCollections3ForLoadJar,
+    CommonsCollections4,
+    CommonsCollections5, CommonsCollections5ForLoadJar,
+    CommonsCollections6, CommonsCollections6ForLoadJar,
+    CommonsCollections7, CommonsCollections8, CommonsCollections9,
+    CommonsCollections10, CommonsCollections11 {
 
     /**
      * {@inheritDoc}

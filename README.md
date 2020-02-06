@@ -36,7 +36,7 @@ java -cp target/marshalsec-0.0.1-SNAPSHOT-all.jar marshalsec.ShiroPaddingOracleC
 --attack
 具有user权限的url
 rememberMe的base64值
-gadget（URLDNS, CommonsCollections, CommonsBeanutils1, JRMPClient）
+gadget（URLDNS, CommonsBeanutils1, JRMPClient, CommonsCollections2, CommonsCollections11）
 gadget参数
 ```
 例：

@@ -28,47 +28,47 @@ import java.io.ByteArrayOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import marshalsec.gadgets.CommonsBeanutils1;
-import marshalsec.gadgets.CommonsCollections;
+import marshalsec.gadgets.CommonsCollections11;
+import marshalsec.gadgets.CommonsCollections2;
 import marshalsec.gadgets.JRMPClient;
 import marshalsec.gadgets.URLDNS;
 
 
 /**
  * @author mbechler
- *
  */
-public class Shiro extends MarshallerBase<byte[]> implements URLDNS, CommonsCollections,
-    CommonsBeanutils1, JRMPClient {
+public class Shiro extends MarshallerBase<byte[]> implements URLDNS,
+    CommonsBeanutils1, JRMPClient, CommonsCollections2, CommonsCollections11 {
 
-    /**
-     * {@inheritDoc}
-     *
-     * @see MarshallerBase#marshal(Object)
-     */
-    @Override
-    public byte[] marshal ( Object o ) throws Exception {
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        try ( ObjectOutputStream oos = new ObjectOutputStream(bos) ) {
-            oos.writeObject(o);
-        }
-        return bos.toByteArray();
+  /**
+   * {@inheritDoc}
+   *
+   * @see MarshallerBase#marshal(Object)
+   */
+  @Override
+  public byte[] marshal(Object o) throws Exception {
+    ByteArrayOutputStream bos = new ByteArrayOutputStream();
+    try (ObjectOutputStream oos = new ObjectOutputStream(bos)) {
+      oos.writeObject(o);
     }
+    return bos.toByteArray();
+  }
 
 
-    /**
-     * {@inheritDoc}
-     *
-     * @see MarshallerBase#unmarshal(Object)
-     */
-    @Override
-    public Object unmarshal ( byte[] data ) throws Exception {
-        ByteArrayInputStream bis = new ByteArrayInputStream(data);
-        try ( ObjectInputStream ois = new ObjectInputStream(bis) ) {
-            return ois.readObject();
-        }
+  /**
+   * {@inheritDoc}
+   *
+   * @see MarshallerBase#unmarshal(Object)
+   */
+  @Override
+  public Object unmarshal(byte[] data) throws Exception {
+    ByteArrayInputStream bis = new ByteArrayInputStream(data);
+    try (ObjectInputStream ois = new ObjectInputStream(bis)) {
+      return ois.readObject();
     }
+  }
 
-    public static void main ( String[] args ) {
-        new Shiro().run(args);
-    }
+  public static void main(String[] args) {
+    new Shiro().run(args);
+  }
 }
