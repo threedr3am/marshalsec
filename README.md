@@ -10,7 +10,7 @@ java -cp target/marshalsec-0.0.1-SNAPSHOT-all.jar marshalsec.DubboHessian
 --attack
 dubbo服务host
 dubbo服务port
-gadget（SpringAbstractBeanFactoryPointcutAdvisor, Rome, Resin）
+gadget（SpringAbstractBeanFactoryPointcutAdvisor, Rome, Resin, XBean2）
 gadget参数
 ```
 例：

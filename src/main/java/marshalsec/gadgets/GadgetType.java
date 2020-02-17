@@ -36,6 +36,7 @@ public enum GadgetType {
   SpringAbstractBeanFactoryPointcutAdvisor(SpringAbstractBeanFactoryPointcutAdvisor.class),
   Rome(Rome.class),
   XBean(XBean.class),
+  XBean2(XBean2.class),
   Resin(Resin.class),
   CommonsConfiguration(CommonsConfiguration.class),
   LazySearchEnumeration(LazySearchEnumeration.class),

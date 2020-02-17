@@ -35,6 +35,7 @@ import java.io.ByteArrayOutputStream;
 import marshalsec.gadgets.Resin;
 import marshalsec.gadgets.Rome;
 import marshalsec.gadgets.SpringAbstractBeanFactoryPointcutAdvisor;
+import marshalsec.gadgets.XBean2;
 
 
 /**
@@ -46,7 +47,7 @@ import marshalsec.gadgets.SpringAbstractBeanFactoryPointcutAdvisor;
  *
  */
 public abstract class HessianBase2 extends MarshallerBase<byte[]>
-        implements SpringAbstractBeanFactoryPointcutAdvisor, Rome, Resin {
+        implements SpringAbstractBeanFactoryPointcutAdvisor, Rome, Resin, XBean2 {
 
     /**
      * {@inheritDoc}
