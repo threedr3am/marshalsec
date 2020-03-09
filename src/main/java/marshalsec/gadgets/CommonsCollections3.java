@@ -25,6 +25,7 @@ import org.apache.commons.collections.map.LazyMap;
  */
 public interface CommonsCollections3 extends Gadget {
 
+	@Primary
 	default Object makeCommonsCollections3(UtilFactory uf, String[] args) throws Exception {
 		Object templatesImpl = Gadgets.createTemplatesImpl(args[0]);
 

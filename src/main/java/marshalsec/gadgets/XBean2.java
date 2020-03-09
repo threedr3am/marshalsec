@@ -43,11 +43,11 @@ public interface XBean2 extends Gadget {
     }, defaultArgs = {
         MarshallerBase.defaultCodebase, MarshallerBase.defaultCodebaseClass
     } )
-    default Object makeXBean(UtilFactory uf, String[] args) throws Exception {
+    default Object makeXBean2(UtilFactory uf, String[] args) throws Exception {
         Context ctx = Reflections.createWithoutConstructor(WritableContext.class);
         Reference ref = new Reference("foo", args[ 1 ], args[ 0 ]);
         ReadOnlyBinding binding = new ReadOnlyBinding("foo", ref, ctx);
-        return uf.makeToStringTriggerStable(binding); // $NON-NLS-1$
+        return uf.makeToStringTriggerUnstable(binding); // $NON-NLS-1$
     }
 
 }
