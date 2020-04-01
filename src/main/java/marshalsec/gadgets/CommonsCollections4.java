@@ -7,11 +7,11 @@ import javax.xml.transform.Templates;
 import marshalsec.UtilFactory;
 import marshalsec.util.Gadgets;
 import marshalsec.util.Reflections;
-import org.apache.commons.collections4.Transformer;
-import org.apache.commons.collections4.comparators.TransformingComparator;
-import org.apache.commons.collections4.functors.ChainedTransformer;
-import org.apache.commons.collections4.functors.ConstantTransformer;
-import org.apache.commons.collections4.functors.InstantiateTransformer;
+import org.apache.commons.collections.Transformer;
+import org.apache.commons.collections.comparators.TransformingComparator;
+import org.apache.commons.collections.functors.ChainedTransformer;
+import org.apache.commons.collections.functors.ConstantTransformer;
+import org.apache.commons.collections.functors.InstantiateTransformer;
 
 /*
  * Variation on CommonsCollections2 that uses InstantiateTransformer instead of
