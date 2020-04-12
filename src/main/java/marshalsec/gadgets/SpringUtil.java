@@ -91,7 +91,11 @@ public final class SpringUtil {
         DefaultBeanFactoryPointcutAdvisor pcadv = new DefaultBeanFactoryPointcutAdvisor();
         pcadv.setBeanFactory(bf);
         pcadv.setAdviceBeanName(name);
-        return uf.makeEqualsTrigger(pcadv, new DefaultBeanFactoryPointcutAdvisor());
+
+        DefaultBeanFactoryPointcutAdvisor pcadv2 = new DefaultBeanFactoryPointcutAdvisor();
+        pcadv2.setBeanFactory(bf);
+        pcadv2.setAdviceBeanName(name);
+        return uf.makeEqualsTrigger(pcadv, pcadv2);
     }
 
 

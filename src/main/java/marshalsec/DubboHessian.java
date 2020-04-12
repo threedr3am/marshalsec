@@ -34,8 +34,8 @@ import org.apache.dubbo.common.serialize.Cleanable;
 import org.apache.dubbo.common.serialize.hessian2.Hessian2ObjectOutput;
 
 /**
- * 暂时测试Spring、Spring-boot环境可打的有 Rome, Resin
- * 能打Spring环境的有SpringAbstractBeanFactoryPointcutAdvisor, Rome, XBean2, Resin
+ * 暂时测试Spring、Spring-boot环境可打的有 Rome, Resin, SpringAbstractBeanFactoryPointcutAdvisor
+ * 能打Spring环境的有 Rome, XBean2, Resin
  *
  * @author threedr3am
  */
