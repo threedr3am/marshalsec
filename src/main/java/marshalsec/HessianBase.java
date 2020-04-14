@@ -34,6 +34,7 @@ import com.caucho.hessian.io.SerializerFactory;
 import com.caucho.hessian.io.UnsafeSerializer;
 import com.caucho.hessian.io.WriteReplaceSerializer;
 
+import marshalsec.gadgets.Groovy;
 import marshalsec.gadgets.Resin;
 import marshalsec.gadgets.Rome;
 import marshalsec.gadgets.SpringAbstractBeanFactoryPointcutAdvisor;
@@ -50,7 +51,8 @@ import marshalsec.gadgets.XBean;
  *
  */
 public abstract class HessianBase extends MarshallerBase<byte[]>
-        implements SpringPartiallyComparableAdvisorHolder, SpringAbstractBeanFactoryPointcutAdvisor, Rome, XBean, Resin {
+        implements SpringPartiallyComparableAdvisorHolder, SpringAbstractBeanFactoryPointcutAdvisor, Rome, XBean, Resin,
+    Groovy {
 
     /**
      * {@inheritDoc}
