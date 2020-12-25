@@ -23,24 +23,25 @@ SOFTWARE.
 package marshalsec;
 
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+
 import com.caucho.hessian.io.AbstractHessianInput;
 import com.caucho.hessian.io.AbstractHessianOutput;
 import com.caucho.hessian.io.Hessian2Input;
 import com.caucho.hessian.io.Hessian2Output;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 
 
 /**
- * @author threedr3am
+ * @author hex0wn
  *
  */
-public class Hessian2 extends HessianBase2 {
+public class Hessian2 extends HessianBase {
 
     /**
      * {@inheritDoc}
      *
-     * @see marshalsec.AbstractHessianBase#createOutput(ByteArrayOutputStream)
+     * @see marshalsec.AbstractHessianBase#createOutput(java.io.ByteArrayOutputStream)
      */
     @Override
     protected AbstractHessianOutput createOutput ( ByteArrayOutputStream bos ) {
@@ -51,7 +52,7 @@ public class Hessian2 extends HessianBase2 {
     /**
      * {@inheritDoc}
      *
-     * @see marshalsec.AbstractHessianBase#createInput(ByteArrayInputStream)
+     * @see marshalsec.AbstractHessianBase#createInput(java.io.ByteArrayInputStream)
      */
     @Override
     protected AbstractHessianInput createInput ( ByteArrayInputStream bos ) {
