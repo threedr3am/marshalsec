@@ -18,7 +18,7 @@ import org.apache.http.ssl.SSLContextBuilder;
 import org.apache.http.ssl.TrustStrategy;
 
 /**
- * @author xuanyh
+ * @author threedr3am
  */
 public class ShiroPaddingOracleCBC extends Shiro {
 

@@ -35,7 +35,7 @@ import marshalsec.gadgets.URLDNS;
 
 
 /**
- * @author mbechler
+ * @author threedr3am
  */
 public class Shiro extends MarshallerBase<byte[]> implements URLDNS,
     CommonsBeanutils1, JRMPClient, CommonsCollections2, CommonsCollections11 {

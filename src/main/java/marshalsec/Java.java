@@ -51,7 +51,7 @@ import marshalsec.gadgets.XBean;
 
 
 /**
- * @author mbechler
+ * @author threedr3am
  *
  */
 public class Java extends MarshallerBase<byte[]> implements CommonsBeanutils, XBean, URLDNS,
