@@ -183,7 +183,6 @@ public abstract class MarshallerBase <T> implements UtilFactory {
         }
 
         if ( !test || verbose ) {
-            System.err.println();
             writeOutput(marshal, escape);
         }
 

